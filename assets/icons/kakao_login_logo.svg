@@ -1,0 +1,9 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="kakao">
+<g id="Ellipse 14">
+<circle cx="28" cy="28" r="28" fill="#FEE500"/>
+<circle cx="28" cy="28" r="27.75" stroke="#12121D" stroke-opacity="0.1" stroke-width="0.5"/>
+</g>
+<path id="Path" fill-rule="evenodd" clip-rule="evenodd" d="M28.0001 19C22.4769 19 18 22.4771 18 26.7656C18 29.4326 19.7316 31.7838 22.3684 33.1823L21.2589 37.2565C21.1609 37.6165 21.5705 37.9035 21.885 37.6948L26.7482 34.4682C27.1586 34.508 27.5757 34.5312 28.0001 34.5312C33.5228 34.5312 38 31.0543 38 26.7656C38 22.4771 33.5228 19 28.0001 19Z" fill="black"/>
+</g>
+</svg>
