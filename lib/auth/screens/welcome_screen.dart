@@ -1,9 +1,12 @@
 import 'package:codyon/auth/constants/data.dart';
 import 'package:codyon/auth/widgets/social_login_badge.dart';
+import 'package:codyon/common/constants/colors.dart';
 import 'package:codyon/common/layout/default_layout.dart';
 import 'package:codyon/extensions.dart';
+import 'package:codyon/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -58,7 +61,11 @@ class WelcomeScreen extends StatelessWidget {
                       onPressed: (provider) {},
                     ),
                   ].withSpaceBetween(width: 32),
-                )
+                ),
+                const SizedBox(height: 40),
+                _GoEmailLoginButton(
+                  onPressed: () => context.pushNamed(Routes.login.name),
+                ),
               ],
             ),
           ),
@@ -104,6 +111,36 @@ class _SnsLoginButton extends StatelessWidget {
             ),
           ),
         ].withSpaceBetween(width: 5),
+      ),
+    );
+  }
+}
+
+class _GoEmailLoginButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const _GoEmailLoginButton({
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.only(bottom: 4),
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: GRAY_300, width: 1),
+          ),
+        ),
+        child: const Text(
+          "이메일로 로그인하기",
+          style: TextStyle(
+            fontSize: 13,
+            color: GRAY_300,
+          ),
+        ),
       ),
     );
   }
