@@ -32,10 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
           title: const Text("로그인"),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 25,
-          ),
+          padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: Column(
