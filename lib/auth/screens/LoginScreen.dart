@@ -132,8 +132,8 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
         ),
         suffixIcon: GestureDetector(
           onTap: toggleObscure,
-          child: const Icon(
-            Icons.remove_red_eye,
+          child: Icon(
+            obscure ? Icons.visibility : Icons.visibility_off,
           ),
         ),
       ),
