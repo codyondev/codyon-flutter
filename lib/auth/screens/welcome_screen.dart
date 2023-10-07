@@ -29,7 +29,10 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                SvgPicture.asset("assets/icons/logo_text.svg"),
+                Hero(
+                  tag: "codyon_logo",
+                  child: SvgPicture.asset("assets/icons/logo_text.svg"),
+                ),
                 const SizedBox(height: 52),
                 _SnsLoginButton(
                   "카카오 계정으로 로그인",

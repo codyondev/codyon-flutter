@@ -44,7 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-              SvgPicture.asset("assets/icons/logo_text.svg"),
+              Hero(
+                tag: "codyon_logo",
+                child: SvgPicture.asset("assets/icons/logo_text.svg"),
+              ),
               const SizedBox(height: 40),
               FormBuilder(
                 key: _formKey,
