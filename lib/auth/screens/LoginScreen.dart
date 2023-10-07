@@ -3,9 +3,24 @@ import 'package:codyon/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  Future<void> _onSubmit() async {
+    if (_formKey.currentState == null || !_formKey.currentState!.validate()) {
+      return;
+    }
+    print(_formKey.currentState!.instantValue);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +51,20 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 15),
                 SvgPicture.asset("assets/icons/logo_text.svg"),
                 const SizedBox(height: 40),
-                const EmailFormField(),
-                const SizedBox(height: 40),
-                const _PasswordFormField(),
-                const SizedBox(height: 40),
-                const _SubmitButton(),
+                FormBuilder(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      const EmailFormField(),
+                      const SizedBox(height: 40),
+                      const _PasswordFormField(),
+                      const SizedBox(height: 40),
+                      _SubmitButton(
+                        onSubmit: _onSubmit,
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 24),
                 const _OtherActions(),
                 const SizedBox(height: 66),
@@ -64,6 +88,12 @@ class EmailFormField extends StatelessWidget {
     return FormBuilderTextField(
       name: "email",
       style: const TextStyle(fontSize: 13),
+      validator: FormBuilderValidators.compose(
+        [
+          FormBuilderValidators.required(errorText: "이메일을 입력해주세요."),
+          FormBuilderValidators.email(errorText: "이메일 형식에 맞게 입력해주세요.")
+        ],
+      ),
       decoration: const InputDecoration(
         hintStyle: TextStyle(color: GRAY_200),
         hintText: "아이디 입력",
@@ -93,6 +123,7 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
       obscureText: obscure,
       name: "password",
       style: const TextStyle(fontSize: 13),
+      validator: FormBuilderValidators.required(errorText: "비밀번호를 입력해주세요."),
       decoration: InputDecoration(
         hintText: "비밀번호 입력",
         hintStyle: const TextStyle(color: GRAY_200),
@@ -111,12 +142,16 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
 }
 
 class _SubmitButton extends StatelessWidget {
-  const _SubmitButton();
+  final VoidCallback onSubmit;
+
+  const _SubmitButton({
+    required this.onSubmit,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onSubmit,
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF16182C),
