@@ -1,4 +1,5 @@
 import 'package:codyon/common/constants/colors.dart';
+import 'package:codyon/common/layout/default_layout.dart';
 import 'package:codyon/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -24,52 +25,46 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: FocusScope.of(context).unfocus,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text("로그인"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "원하는 스타일의\n완벽한 발견",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
+    return DefaultLayout(
+      title: "로그인",
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "원하는 스타일의\n완벽한 발견",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox(height: 15),
-                SvgPicture.asset("assets/icons/logo_text.svg"),
-                const SizedBox(height: 40),
-                FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      const EmailFormField(),
-                      const SizedBox(height: 40),
-                      const _PasswordFormField(),
-                      const SizedBox(height: 40),
-                      _SubmitButton(
-                        onSubmit: _onSubmit,
-                      ),
-                    ],
-                  ),
+              ),
+              const SizedBox(height: 15),
+              SvgPicture.asset("assets/icons/logo_text.svg"),
+              const SizedBox(height: 40),
+              FormBuilder(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const EmailFormField(),
+                    const SizedBox(height: 40),
+                    const _PasswordFormField(),
+                    const SizedBox(height: 40),
+                    _SubmitButton(
+                      onSubmit: _onSubmit,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 24),
-                const _OtherActions(),
-                const SizedBox(height: 66),
-                const _SnsLoginDivider(),
-                const SizedBox(height: 26),
-                const _SnsLoginProviders(),
-              ],
-            ),
+              ),
+              const SizedBox(height: 24),
+              const _OtherActions(),
+              const SizedBox(height: 66),
+              const _SnsLoginDivider(),
+              const SizedBox(height: 26),
+              const _SnsLoginProviders(),
+            ],
           ),
         ),
       ),
