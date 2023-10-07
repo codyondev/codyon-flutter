@@ -1,3 +1,5 @@
+import 'package:codyon/auth/constants/data.dart';
+import 'package:codyon/auth/widgets/social_login_badge.dart';
 import 'package:codyon/common/constants/colors.dart';
 import 'package:codyon/common/layout/default_layout.dart';
 import 'package:codyon/extensions.dart';
@@ -233,11 +235,30 @@ class _SnsLoginProviders extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset("assets/icons/naver_login_logo.svg"),
-        SvgPicture.asset("assets/icons/kakao_login_logo.svg"),
-        SvgPicture.asset("assets/icons/google_login_logo.svg"),
-        SvgPicture.asset("assets/icons/facebook_login_logo.svg"),
-        SvgPicture.asset("assets/icons/apple_login_logo.svg"),
+        SocialLoginBadge(
+          provider: LoginProvider.naver,
+          foregroundColor: Colors.white,
+          backgroundColor: const Color(0xFF03C75A),
+          onPressed: (provider) {},
+        ),
+        SocialLoginBadge(
+          provider: LoginProvider.kakao,
+          backgroundColor: const Color(0xFFFEE500),
+          foregroundColor: Colors.black.withOpacity(0.85),
+          onPressed: (provider) {},
+        ),
+        SocialLoginBadge(
+          provider: LoginProvider.google,
+          onPressed: (provider) {},
+        ),
+        SocialLoginBadge(
+          provider: LoginProvider.facebook,
+          onPressed: (provider) {},
+        ),
+        SocialLoginBadge(
+          provider: LoginProvider.apple,
+          onPressed: (provider) {},
+        ),
       ],
     );
   }
