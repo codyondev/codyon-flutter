@@ -1,4 +1,5 @@
 import 'package:codyon/auth/screens/login_screen.dart';
+import 'package:codyon/auth/screens/singup_screen.dart';
 import 'package:codyon/auth/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 enum Routes {
   login,
   welcome,
+  signup,
 }
 
 final routerProvider = Provider<GoRouter>(
@@ -26,6 +28,11 @@ final routerProvider = Provider<GoRouter>(
           path: "/welcome",
           name: Routes.welcome.name,
           builder: (context, state) => const WelcomeScreen(),
+        ),
+        GoRoute(
+          path: "/signup",
+          name: Routes.signup.name,
+          builder: (context, state) => const SignUpScreen(),
         )
       ],
     );

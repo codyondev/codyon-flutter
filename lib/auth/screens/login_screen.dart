@@ -3,10 +3,12 @@ import 'package:codyon/auth/widgets/social_login_badge.dart';
 import 'package:codyon/common/constants/colors.dart';
 import 'package:codyon/common/layout/default_layout.dart';
 import 'package:codyon/extensions.dart';
+import 'package:codyon/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -180,9 +182,12 @@ class _OtherActions extends StatelessWidget {
           style: TextStyle(color: GRAY_600),
         ),
         _renderDivider(),
-        const Text(
-          "회원가입",
-          style: TextStyle(color: GRAY_600),
+        InkWell(
+          onTap: () => context.pushNamed(Routes.signup.name),
+          child: const Text(
+            "회원가입",
+            style: TextStyle(color: GRAY_600),
+          ),
         ),
       ].withSpaceBetween(width: 12),
     );
