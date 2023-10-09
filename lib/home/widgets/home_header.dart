@@ -8,10 +8,9 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 16,
         right: 16,
-        top: MediaQuery.of(context).padding.top + 8,
         bottom: 8,
       ),
       child: Row(

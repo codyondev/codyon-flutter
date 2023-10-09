@@ -1,8 +1,10 @@
 import 'package:codyon/common/constants/colors.dart';
 import 'package:codyon/common/layout/default_layout.dart';
 import 'package:codyon/extensions.dart';
+import 'package:codyon/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({
@@ -20,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
           bottom: MediaQuery.of(context).padding.bottom,
         ),
         child: _SubmitButton(
-          onSubmit: () {},
+          onSubmit: () => context.goNamed(Routes.home.name),
         ),
       ),
       child: SingleChildScrollView(
