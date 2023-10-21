@@ -41,18 +41,15 @@ class _HomeScreenState extends State<HomeScreen>
               delegate: _SliverAppBarDelegate(
                 tabBar: TabBar(
                   indicatorColor: const Color(0xff4400eb),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
                   labelColor: const Color(0xFF0C0C0C),
-                  dividerColor: Colors.transparent,
                   unselectedLabelColor:
                       const Color(0xFF0C0C0C).withOpacity(0.6),
                   isScrollable: true,
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.label,
-                  indicatorWeight: 2,
                   tabs: tabs,
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 12),
                 ),
               ),
             ),
