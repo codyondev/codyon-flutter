@@ -31,10 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: "로그인",
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     const EmailFormField(),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
                     const _PasswordFormField(),
                     const SizedBox(height: 40),
                     _SubmitButton(
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 24),
               const _OtherActions(),
-              const SizedBox(height: 66),
+              const SizedBox(height: 46),
               const _SnsLoginDivider(),
               const SizedBox(height: 26),
               const _SnsLoginProviders(),

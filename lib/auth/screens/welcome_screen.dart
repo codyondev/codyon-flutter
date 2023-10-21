@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _SnsLoginButton(
-                "카카오 계정으로 로그인",
+                "네이버 계정으로 로그인",
                 foregroundColor: Colors.white,
                 backgroundColor: const Color(0xFF03C75A),
                 svgIcon: SvgPicture.asset("assets/icons/naver_symbol.svg"),

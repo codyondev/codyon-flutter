@@ -33,6 +33,7 @@ class DefaultLayout extends StatelessWidget {
       return null;
     } else {
       return AppBar(
+        elevation: 0,
         title: Text(title!),
       );
     }
