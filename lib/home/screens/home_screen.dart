@@ -1,3 +1,4 @@
+import 'package:codyon/home/widgets/home_banner.dart';
 import 'package:codyon/home/widgets/home_header.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
             ),
+            const SliverToBoxAdapter(child: HomeBanner()),
             SliverFillRemaining(
               hasScrollBody: true,
               child: TabBarView(
