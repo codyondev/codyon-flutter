@@ -41,6 +41,15 @@ class MyApp extends ConsumerWidget {
               fontSize: 16,
             ),
           ),
+          bottomSheetTheme: const BottomSheetThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24),
+                topRight: Radius.circular(24),
+              ),
+            ),
+            backgroundColor: Colors.white,
+          ),
         ),
         routerConfig: router,
       ),

@@ -1,5 +1,6 @@
 import 'package:codyon/common/constants/colors.dart';
 import 'package:codyon/extensions.dart';
+import 'package:codyon/home/screens/home_filters_screen.dart';
 import 'package:codyon/home/widgets/home_banner.dart';
 import 'package:flutter/material.dart';
 
@@ -41,11 +42,14 @@ class _HomeFiltersState extends State<HomeFilters> {
     });
   }
 
+  void _onFilter(List<String> filters) =>
+      setState(() => this.filters = filters);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      height: 53,
+      height: 56,
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(width: 0.5, color: GRAY_200),
@@ -57,6 +61,10 @@ class _HomeFiltersState extends State<HomeFilters> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         scrollDirection: Axis.horizontal,
         children: [
+          HomeFilterSettingButton(
+            filters: filters,
+            onFilter: _onFilter,
+          ),
           HomeFilter(
             label: "미니멀",
             value: "minimal",
@@ -131,19 +139,79 @@ class HomeFilter extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        height: 37,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
           border: Border.all(color: active! ? PRIMARY_COLOR : GRAY_300),
           borderRadius: BorderRadius.circular(30),
         ),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: active! ? PRIMARY_COLOR : GRAY_400,
-            ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: active! ? PRIMARY_COLOR : GRAY_400,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeFilterSettingButton extends StatelessWidget {
+  final Function(List<String> filters) onFilter;
+  final List<String> filters;
+
+  const HomeFilterSettingButton({
+    super.key,
+    required this.filters,
+    required this.onFilter,
+  });
+
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      enableDrag: true,
+      useRootNavigator: true,
+      useSafeArea: true,
+      showDragHandle: true,
+      context: context,
+      builder: (context) {
+        return HomeFiltersScreen(
+          filters: filters,
+          onFilter: onFilter,
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => _showBottomSheet(context),
+      borderRadius: BorderRadius.circular(30),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        height: 37,
+        decoration: BoxDecoration(
+          border: Border.all(color: GRAY_300),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: const Center(
+          child: Row(
+            children: [
+              Icon(
+                Icons.settings,
+                size: 12,
+                color: GRAY_400,
+              ),
+              SizedBox(width: 4),
+              Text(
+                "필터",
+                style: TextStyle(
+                  fontSize: 12,
+                  color: GRAY_400,
+                ),
+              )
+            ],
           ),
         ),
       ),
