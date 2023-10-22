@@ -42,15 +42,9 @@ class _HomeScreenState extends State<HomeScreen>
             controller: _tabController,
             children: [
               const HomeRecommendedView(),
-              Container(
-                color: Colors.redAccent,
-              ),
-              Container(
-                color: Colors.blue,
-              ),
-              Container(
-                color: Colors.yellow,
-              ),
+              Container(color: Colors.redAccent),
+              Container(color: Colors.blue),
+              Container(color: Colors.yellow),
             ],
           ),
         ),
@@ -75,15 +69,16 @@ class HomeTabBar extends StatelessWidget {
       pinned: true,
       delegate: _SliverAppBarDelegate(
         tabBar: TabBar(
-          indicatorColor: const Color(0xff4400eb),
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          labelColor: const Color(0xFF0C0C0C),
-          unselectedLabelColor: const Color(0xFF0C0C0C).withOpacity(0.6),
+          tabs: tabs,
           isScrollable: true,
           controller: tabController,
+          indicatorColor: const Color(0xff4400eb),
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+          labelColor: const Color(0xFF0C0C0C),
+          unselectedLabelColor: const Color(0xFF0C0C0C).withOpacity(0.6),
           indicatorSize: TabBarIndicatorSize.label,
-          tabs: tabs,
           labelPadding: const EdgeInsets.symmetric(horizontal: 12),
+          dividerColor: Colors.white,
         ),
       ),
     );
@@ -98,9 +93,9 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
 
   @override
-  double get minExtent => tabBar.preferredSize.height;
+  double get minExtent => 60;
   @override
-  double get maxExtent => tabBar.preferredSize.height;
+  double get maxExtent => 60;
 
   @override
   Widget build(
