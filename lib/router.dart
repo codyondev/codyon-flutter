@@ -19,7 +19,7 @@ final routerProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: "/welcome",
+      initialLocation: "/home",
       routes: [
         GoRoute(
           path: "/home",

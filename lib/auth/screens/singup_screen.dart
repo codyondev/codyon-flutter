@@ -16,7 +16,12 @@ class SignUpScreen extends StatelessWidget {
     return DefaultLayout(
       title: "회원가입",
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: MediaQuery.of(context).padding.bottom + 10,
+          top: 10,
+        ),
         child: _SubmitButton(
           onSubmit: () => context.goNamed(Routes.home.name),
         ),

@@ -1,4 +1,4 @@
-import 'package:codyon/home/widgets/home_banner.dart';
+import 'package:codyon/home/screens/home_recommended_view.dart';
 import 'package:codyon/home/widgets/home_header.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _tabController = TabController(length: tabs.length, vsync: this);
-    });
+    _tabController = TabController(length: tabs.length, vsync: this);
   }
 
   @override
@@ -33,49 +31,59 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        child: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            const SliverToBoxAdapter(child: HomeHeader()),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SliverAppBarDelegate(
-                tabBar: TabBar(
-                  indicatorColor: const Color(0xff4400eb),
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  labelColor: const Color(0xFF0C0C0C),
-                  unselectedLabelColor:
-                      const Color(0xFF0C0C0C).withOpacity(0.6),
-                  isScrollable: true,
-                  controller: _tabController,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  tabs: tabs,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 12),
-                ),
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              const HomeHeader(),
+              HomeTabBar(tabController: _tabController, tabs: tabs),
+            ];
+          },
+          body: TabBarView(
+            controller: _tabController,
+            children: [
+              const HomeRecommendedView(),
+              Container(
+                color: Colors.redAccent,
               ),
-            ),
-            const SliverToBoxAdapter(child: HomeBanner()),
-            SliverFillRemaining(
-              hasScrollBody: true,
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  Container(
-                    color: Colors.amber,
-                  ),
-                  Container(
-                    color: Colors.redAccent,
-                  ),
-                  Container(
-                    color: Colors.blue,
-                  ),
-                  Container(
-                    color: Colors.yellow,
-                  ),
-                ],
+              Container(
+                color: Colors.blue,
               ),
-            )
-          ],
+              Container(
+                color: Colors.yellow,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeTabBar extends StatelessWidget {
+  final TabController tabController;
+  final List<Tab> tabs;
+
+  const HomeTabBar({
+    super.key,
+    required this.tabController,
+    required this.tabs,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverAppBarDelegate(
+        tabBar: TabBar(
+          indicatorColor: const Color(0xff4400eb),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          labelColor: const Color(0xFF0C0C0C),
+          unselectedLabelColor: const Color(0xFF0C0C0C).withOpacity(0.6),
+          isScrollable: true,
+          controller: tabController,
+          indicatorSize: TabBarIndicatorSize.label,
+          tabs: tabs,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 12),
         ),
       ),
     );

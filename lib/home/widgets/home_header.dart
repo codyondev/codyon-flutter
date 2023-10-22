@@ -7,33 +7,35 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: const EdgeInsets.only(
         left: 16,
         right: 16,
         bottom: 8,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SvgPicture.asset("assets/icons/logo_text.svg"),
-          Row(
-            children: <Widget>[
-              InkWell(
-                onTap: () {},
-                child: SvgPicture.asset("assets/icons/fi_search.svg"),
-              ),
-              InkWell(
-                onTap: () {},
-                child: SvgPicture.asset("assets/icons/fi_bell.svg"),
-              ),
-              InkWell(
-                onTap: () {},
-                child: SvgPicture.asset("assets/icons/fi_user.svg"),
-              ),
-            ].withSpaceBetween(width: 12),
-          ),
-        ],
+      sliver: SliverToBoxAdapter(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset("assets/icons/logo_text.svg"),
+            Row(
+              children: <Widget>[
+                InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset("assets/icons/fi_search.svg"),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset("assets/icons/fi_bell.svg"),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset("assets/icons/fi_user.svg"),
+                ),
+              ].withSpaceBetween(width: 12),
+            ),
+          ],
+        ),
       ),
     );
   }
